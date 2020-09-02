@@ -6,17 +6,21 @@
       </b-navbar-item>
     </template>
     <template slot="start">
-      <b-navbar-item href="/">Home</b-navbar-item>
-      <b-navbar-item href="/products">Products</b-navbar-item>
+      <nuxt-link to="/" class="navbar-item">
+        Home    
+      </nuxt-link>
+      <nuxt-link to="/products" class="navbar-item">
+        Products    
+      </nuxt-link>
     </template>
 
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
-          <a class="button is-primary">
+          <button class="button is-primary">
             <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">Log in</a>
+          </button>
+          <button class="button is-light">Log in</button>
         </div>
       </b-navbar-item>
     </template>
