@@ -8,8 +8,6 @@ export default async function(context) {
       clients: { defaultClient },
     },
   } = app;
-  const handle = route.path.replace('/products/', '');
-  console.log(route);
 
   try {
     const { data } = await defaultClient.query({
@@ -20,7 +18,6 @@ export default async function(context) {
     });
 
     if (data) {
-      console.log(data);
       const productData = data.productByHandle;
       store.commit('pdp/setProductData', productData);
       context.productData = productData;
