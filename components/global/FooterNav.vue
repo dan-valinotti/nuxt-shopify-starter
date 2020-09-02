@@ -1,5 +1,5 @@
 <template>
-  <b-footer class="footer-nav py-16 w-full h-full">
+  <footer class="footer-nav py-16 w-full h-full">
     <div class="content has-text-centered w-full h-full">
       <p>
         <strong>Nuxt Shopify Store</strong>
@@ -11,7 +11,7 @@
         Products
       </nuxt-link>
     </div>
-  </b-footer>
+  </footer>
 </template>
 
 <style lang="scss">
