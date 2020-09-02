@@ -17,7 +17,8 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "nuxt-buefy": "^0.4.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
@@ -31,8 +32,10 @@
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.1.4",
     "jest": "^24.1.0",
+    "node-sass": "^4.14.1",
     "nodemon": "^1.18.9",
     "prettier": "^2.1.1",
+    "sass-loader": "^10.0.1",
     "vue-jest": "^4.0.0-0"
   }
 }

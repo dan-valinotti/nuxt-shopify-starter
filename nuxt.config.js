@@ -1,7 +1,11 @@
 require('dotenv').config();
 
 module.exports = {
+  globalName: 'Nuxt Shopify Starter',
   mode: 'universal',
+  components: [
+    '~/components/global'
+  ],
   /*
    ** Headers of the page
    */
@@ -34,19 +38,26 @@ module.exports = {
    ** Nuxt.js dev-modules
    */
   buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
+    // Docs: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
-    // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
+    // Docs: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss'
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://github.com/nuxt-community/dotenv-module
+    // Docs: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    '@nuxtjs/apollo'
+    '@nuxtjs/apollo',
+    'nuxt-buefy',
   ],
+  // nuxt-buefy module config
+  // Docs: https://github.com/buefy/nuxt-buefy
+  // Buefy docs: https://buefy.org/documentation/start
+  buefy: {
+    
+  },
   // @nuxtjs/apollo module config
   // Docs: https://github.com/nuxt-community/apollo-module
   apollo: {
