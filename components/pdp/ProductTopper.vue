@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full my-8 flex justify-end items-center">
-    <div class="flex flex-col justify-start items-end">
+  <div class="w-full m-8 flex justify-start items-center">
+    <div class="flex flex-col justify-start items-start">
       <h1 class="text-4xl font-bold">
         {{ title }}
       </h1>
@@ -19,8 +19,12 @@ export default {
       default: '',
     },
     price: {
-      type: Number,
-      default: 0.00,
+      type: String,
+      default: '0.00'
+    },
+    description: {
+      type: String,
+      default: '',
     }
   }
 }
