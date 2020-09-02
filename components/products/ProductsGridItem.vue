@@ -16,7 +16,7 @@
         </div>
 
         <div class="content">
-          <span class="text-red-300">
+          <span class="text-lg text-green-600">
             ${{ parseFloat(price).toFixed(2) }}
           </span>
         </div>
