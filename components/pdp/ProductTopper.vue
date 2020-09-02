@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full m-8 flex justify-start items-center">
+  <div class="w-full my-8 flex justify-start items-center">
     <div class="flex flex-col justify-start items-start">
       <h1 class="text-4xl font-bold">
         {{ title }}
