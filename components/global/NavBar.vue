@@ -6,12 +6,8 @@
       </b-navbar-item>
     </template>
     <template slot="start">
-      <nuxt-link to="/" class="navbar-item">
-        Home    
-      </nuxt-link>
-      <nuxt-link to="/products" class="navbar-item">
-        Products    
-      </nuxt-link>
+      <nuxt-link to="/" class="navbar-item"> Home </nuxt-link>
+      <nuxt-link to="/products" class="navbar-item"> Products </nuxt-link>
     </template>
 
     <template slot="end">
@@ -21,11 +17,32 @@
             <strong>Sign up</strong>
           </button>
           <button class="button is-light">Log in</button>
+          <nav-bar-icon-button
+            icon-name="shopping-cart"
+            @click="onClickCartButton"
+          />
+          <nav-bar-icon-button
+            icon-name="user-circle"
+            @click="onClickCartButton"
+          />
         </div>
       </b-navbar-item>
     </template>
   </b-navbar>
 </template>
 
-<style lang="scss">
+<script>
+export default {
+  methods: {
+    onClickCartButton() {
+      console.log('click');
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.buttons {
+  flex-wrap: nowrap;
+}
 </style>
