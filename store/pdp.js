@@ -1,7 +1,9 @@
 export const state = () => ({
-  productData: {}
+  productData: {},
+  loadingState: false,
 });
 
 export const mutations = {
-  setProductData: (state, data) => state.productData = data,
-}
+  setProductData: (state, data) => (state.productData = data),
+  setLoadingState: (state, isLoading) => (state.loadingState = isLoading),
+};

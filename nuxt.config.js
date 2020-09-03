@@ -3,9 +3,8 @@ require('dotenv').config();
 module.exports = {
   globalName: 'Nuxt Shopify Starter',
   mode: 'universal',
-  components: [
-    '~/components/global'
-  ],
+  telemetry: false,
+  components: ['~/components/global'],
   /*
    ** Headers of the page
    */
@@ -17,10 +16,18 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: process.env.npm_package_description || '',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+        crossorigin: 'anonymous',
+      },
+    ],
   },
   /*
    ** Customize the progress-bar color
@@ -41,7 +48,7 @@ module.exports = {
     // Docs: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Docs: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
   ],
   /*
    ** Nuxt.js modules
@@ -55,9 +62,7 @@ module.exports = {
   // nuxt-buefy module config
   // Docs: https://github.com/buefy/nuxt-buefy
   // Buefy docs: https://buefy.org/documentation/start
-  buefy: {
-    
-  },
+  buefy: {},
   // @nuxtjs/apollo module config
   // Docs: https://github.com/nuxt-community/apollo-module
   apollo: {
@@ -71,11 +76,11 @@ module.exports = {
           headers: {
             'Content-Type': 'application/graphql',
             'X-Shopify-Storefront-Access-Token':
-              process.env.SHOPIFY_ACCESS_TOKEN
-          }
-        }
-      }
-    }
+              process.env.SHOPIFY_ACCESS_TOKEN,
+          },
+        },
+      },
+    },
   },
   /*
    ** Build configuration
@@ -84,6 +89,6 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
-  }
+    extend(config, ctx) {},
+  },
 };
