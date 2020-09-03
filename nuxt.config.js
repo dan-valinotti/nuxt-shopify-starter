@@ -19,15 +19,7 @@ module.exports = {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href:
-          'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
-        crossorigin: 'anonymous',
-      },
-    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
    ** Customize the progress-bar color
@@ -59,7 +51,18 @@ module.exports = {
     '@nuxtjs/apollo',
     'cookie-universal-nuxt',
     'nuxt-buefy',
+    'nuxt-fontawesome',
   ],
+  fontawesome: {
+    component: 'fa',
+    imports: [
+      //import whole set
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas'],
+      },
+    ],
+  },
   // nuxt-buefy module config
   // Docs: https://github.com/buefy/nuxt-buefy
   // Buefy docs: https://buefy.org/documentation/start
@@ -91,5 +94,12 @@ module.exports = {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
+  },
+  render: {
+    bundleRenderer: {
+      shouldPreload: (file, type) => {
+        return ['script', 'style', 'font'].includes(type);
+      },
+    },
   },
 };
