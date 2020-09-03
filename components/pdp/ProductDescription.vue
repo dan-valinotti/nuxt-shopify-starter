@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full">
+  <div class="w-full h-full pr-4">
     <p class="text-gray-700 text-base text-left">
       {{ text }}
     </p>

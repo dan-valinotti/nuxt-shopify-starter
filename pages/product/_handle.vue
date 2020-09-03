@@ -1,8 +1,8 @@
 <template>
   <div class="container mx-auto px-4  ">
-    <div class="w-full h-full flex justify-start items-start pt-16">
+    <div class="w-full h-full flex flex-col md:flex-row justify-start items-start pt-16">
       <product-image :image-src="productData.images.edges[0].node.transformedSrc" />
-      <div class="flex flex-col justify-start items-start w-full h-full mx-8">
+      <div class="flex flex-col justify-start items-start w-full h-full px-4 pb-8 md:px-8">
         <product-topper :title="productData.title" :price="parseFloat(productData.priceRange.minVariantPrice.amount).toFixed(2)"/>
         <product-description :text="productData.description" />
       </div>
