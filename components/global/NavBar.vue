@@ -28,14 +28,30 @@
         </div>
       </b-navbar-item>
     </template>
+    <template slot="sidebar">
+      <cart-sidebar />
+    </template>
   </b-navbar>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+
 export default {
+  computed: {
+    ...mapState({
+      cartSidebarOpen: (state) => state.cart.sidebarOpen,
+    }),
+  },
   methods: {
+    ...mapMutations({
+      setCartSidebarOpen: 'cart/setSidebarOpen',
+    }),
     onClickCartButton() {
-      console.log('click');
+      this.setCartSidebarOpen(true);
+    },
+    onCloseCartSidebar() {
+      this.setCartSidebarOpen(false);
     },
   },
 };

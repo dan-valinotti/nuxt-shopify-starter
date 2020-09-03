@@ -3,6 +3,7 @@ export const state = () => ({
   totalPrice: 0,
   totalQuantity: 0,
   webUrl: '',
+  sidebarOpen: false,
 });
 
 export const mutations = {
@@ -10,4 +11,5 @@ export const mutations = {
   setTotalPrice: (state, price) => (state.totalPrice = price),
   setTotalQuantity: (state, qty) => (state.totalQuantity = qty),
   setWebUrl: (state, webUrl) => (state.webUrl = webUrl),
+  setSidebarOpen: (state, isOpen) => (state.sidebarOpen = isOpen),
 };
