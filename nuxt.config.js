@@ -57,6 +57,7 @@ module.exports = {
     // Docs: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     '@nuxtjs/apollo',
+    'cookie-universal-nuxt',
     'nuxt-buefy',
   ],
   // nuxt-buefy module config
