@@ -3,16 +3,20 @@ import { setLoading, handleAlert, setLineItems } from './utils';
 
 // Plugin function: add selected item to cart
 export const addToCart = (context) => {
+  const { app, store } = context;
   const apolloClient = context.app.apolloProvider.clients.defaultClient;
-  const store = context.store;
-  const checkoutId = context.checkoutId || store.getters['cart/getCheckoutId'];
+  const checkoutId =
+    context.checkoutId ||
+    app.$cookies.get(process.env.SHOPIFY_CHECKOUT_ID_COOKIE);
+  console.log(checkoutId);
 
   if (checkoutId) {
+    setLoading(context, true);
     return apolloClient
       .query({
         query: FETCH_CART_ITEMS,
         variables: {
-          checkoutId: context.checkoutId || store.getters['cart/getCheckoutId'],
+          checkoutId: checkoutId,
         },
       })
       .then(({ data }) => {
@@ -26,38 +30,21 @@ export const addToCart = (context) => {
             value: attr.value,
           })),
         }));
+        console.log(lineItems);
         // Get selected product's variant ID
-        const { color, variant, orderType } = store.getters[
-          'selectedProduct/getSelectedProduct'
-        ];
-        const productIds = store.getters['productData/getProductIds'];
-        const selectedVariantId = productIds[variant][color][orderType];
+        const productData = store.getters['pdp/getProductData'];
+        console.log(productData);
+        const productVariantId = productData.variants.edges[0].node.id;
 
         const existingIndex = lineItems.findIndex(
-          (item) => item.variantId === selectedVariantId
+          (item) => item.variantId === productVariantId
         );
 
         if (existingIndex === -1) {
           lineItems.push({
-            variantId: selectedVariantId,
+            variantId: productVariantId,
             quantity: 1,
-            customAttributes:
-              orderType === 'subscription'
-                ? [
-                    {
-                      key: 'order_interval_unit',
-                      value: 'month',
-                    },
-                    {
-                      key: 'order_interval_frequency',
-                      value: '3',
-                    },
-                    {
-                      key: 'charge_interval_frequency',
-                      value: '3',
-                    },
-                  ]
-                : [],
+            customAttributes: [],
           });
         } else {
           lineItems[existingIndex].quantity++;
@@ -73,45 +60,49 @@ export const addToCart = (context) => {
             },
           })
           .then(({ data }) => {
-            setLineItems(
-              context,
-              data.checkoutLineItemsReplace.checkout.lineItems.edges.map(
-                ({ node }) => ({
-                  ...node,
-                })
-              )
+            const checkoutData = data.checkoutLineItemsReplace.checkout;
+            const newLineItems = checkoutData.lineItems.edges.map((item) => ({
+              ...item.node,
+            }));
+            const totalPrice = checkoutData.totalPriceV2.amount;
+            const totalQuantity = checkoutData.lineItems.edges.reduce(
+              (acc, cur) => acc + cur.quantity,
+              0
             );
-            handleAlert(
-              context,
-              'Success!',
-              'Product added to cart. Redirecting...',
-              'success'
-            );
+            setLineItems(context, newLineItems, totalPrice, totalQuantity);
+            // handleAlert(
+            //   context,
+            //   'Success!',
+            //   'Product added to cart. Redirecting...',
+            //   'success'
+            // );
             setLoading(context, false);
             // Redirect to cart page after 2.5s
-            setTimeout(() => {
-              context.app.router.push({
-                path: '/cart',
-              });
-            }, 2500);
+            // setTimeout(() => {
+            //   context.app.router.push({
+            //     path: '/cart',
+            //   });
+            // }, 2500);
             return true;
             // Catch error in update cart items mutation
           })
           .catch((err) => {
             setLoading(context, false);
-            handleAlert(
-              context,
-              'Something went wrong...',
-              err.message,
-              'error'
-            );
+            console.log(err);
+            // handleAlert(
+            //   context,
+            //   'Something went wrong...',
+            //   err.message,
+            //   'error'
+            // );
             return false;
           });
         // Catch error in fetch cart items request
       })
       .catch((err) => {
+        console.log(err);
         setLoading(context, false);
-        handleAlert(context, 'Something went wrong...', err.message, 'error');
+        // handleAlert(context, 'Something went wrong...', err.message, 'error');
         return false;
       });
   }
