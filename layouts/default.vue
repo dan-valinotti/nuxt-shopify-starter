@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  middleware: ['checkout-id'],
+  middleware: ['checkout-id', 'checkout-line-items'],
 };
 </script>
 
