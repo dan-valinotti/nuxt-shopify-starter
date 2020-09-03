@@ -8,7 +8,6 @@ export const addToCart = (context) => {
   const checkoutId =
     context.checkoutId ||
     app.$cookies.get(process.env.SHOPIFY_CHECKOUT_ID_COOKIE);
-  console.log(checkoutId);
 
   if (checkoutId) {
     setLoading(context, true);
@@ -30,10 +29,8 @@ export const addToCart = (context) => {
             value: attr.value,
           })),
         }));
-        console.log(lineItems);
         // Get selected product's variant ID
         const productData = store.getters['pdp/getProductData'];
-        console.log(productData);
         const productVariantId = productData.variants.edges[0].node.id;
 
         const existingIndex = lineItems.findIndex(

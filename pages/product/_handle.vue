@@ -48,7 +48,6 @@ export default {
       setIsLoading: 'pdp/setLoadingState',
     }),
     onClickAddToCart() {
-      console.log(this.$shopify);
       this.$shopify.addToCart();
     },
   },
