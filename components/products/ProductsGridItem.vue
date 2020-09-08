@@ -3,22 +3,18 @@
     <div class="card">
       <div class="card-image">
         <figure class="image">
-          <img :src="thumbnail.originalSrc" :alt="thumbnail.altText">
+          <img :src="thumbnail.originalSrc" :alt="thumbnail.altText" />
         </figure>
       </div>
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            <p class="title is-4">
-              {{ title }}
-            </p>
+            <p class="title is-4">{{ title }}</p>
           </div>
         </div>
 
         <div class="content">
-          <span class="text-lg text-green-600">
-            ${{ parseFloat(price).toFixed(2) }}
-          </span>
+          <span class="text-lg text-green-600">${{ parseFloat(price).toFixed(2) }}</span>
         </div>
       </div>
     </div>
@@ -43,9 +39,9 @@ export default {
     handle: {
       type: String,
       default: '',
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -57,7 +53,19 @@ export default {
 
   &:hover {
     cursor: pointer;
-    transform: scale(1.05)
+    transform: scale(1.05);
+
+    .card-image > figure > img {
+      transform: scale(1.1);
+    }
+  }
+
+  .card-image > figure {
+    overflow: hidden;
+
+    img {
+      transition: transform 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
   }
 }
 </style>
