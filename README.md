@@ -1,19 +1,26 @@
 ![Nuxt Shopify Starter](https://github.com/dan-valinotti/nuxt-shopify-starter/blob/master/static/img/nuxt-shopify-starter.png)
 
-# nuxt-shopify-starter
-
-> Nuxt Shopify Starter Project
+# Nuxt Shopify Starter Project
 
 A website template that provides functionality and UX elements for developing a Shopify web-store. The basic functions it provides are:
 
-1. Fetching product information
-2. Displaying products in grid
-3. Fetching product details (title, desc, images etc.)
-4. Adding products to the cart
-5. Removing / changing quantity of items in the cart **[WIP]**
-6. Storing a generated Shopify checkout ID in cookies, with expiration
-7. User login / registration **[WIP]**
-8. Cart sidebar/page with shortcuts to checkout in Shopify **[WIP]**
+✅ Fetching product information
+
+✅ Displaying products in grid
+
+✅ Fetching product details (title, desc, images etc.)
+
+✅ Adding products to the cart
+
+✅ Storing a generated Shopify checkout ID in cookies, with expiration
+
+❌ Removing / changing quantity of items in the cart
+
+❌ User login / registration
+
+❌ Cart sidebar/page with shortcuts to checkout in Shopify
+
+❌ Automated test suites
 
 ## Build Setup
 
