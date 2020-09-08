@@ -1,4 +1,4 @@
-![Nuxt Shopify Starter](https://github.com/dan-valinotti/nut-shopify-starter/blob/master/static/img/nuxt-shopify-starter.png)
+![Nuxt Shopify Starter](https://github.com/dan-valinotti/nuxt-shopify-starter/blob/master/static/img/nuxt-shopify-starter.png)
 
 # nuxt-shopify-starter
 
