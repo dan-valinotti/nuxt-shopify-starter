@@ -9,7 +9,7 @@
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
     "generate": "nuxt-ts generate",
-    "lint": "eslint --ext .js,.vue,.ts --ignore-path .gitignore .",
+    "lint": "eslint --ext .js,.vue --ignore-path ./.nuxt/**/* .",
     "test": "jest"
   },
   "dependencies": {
@@ -20,12 +20,15 @@
     "@nuxtjs/apollo": "^4.0.1-rc.3",
     "@nuxtjs/composition-api": "^0.12.3",
     "@nuxtjs/dotenv": "^1.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
     "cookie-universal-nuxt": "^2.1.4",
     "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "nuxt": "^2.0.0",
     "nuxt-buefy": "^0.4.2",
-    "nuxt-fontawesome": "^0.4.0"
+    "nuxt-fontawesome": "^0.4.0",
+    "vue": "^2.6.12"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.4",
@@ -35,8 +38,10 @@
     "@nuxtjs/eslint-module": "^1.0.0",
     "@nuxtjs/tailwindcss": "^1.0.0",
     "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.1.0",
+    "babel-loader": "^8.1.0",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-nuxt": ">=0.4.2",
@@ -46,6 +51,7 @@
     "nodemon": "^1.18.9",
     "prettier": "^2.1.1",
     "sass-loader": "^10.0.1",
+    "vue-eslint-parser": "^7.1.0",
     "vue-jest": "^4.0.0-0"
   }
 }

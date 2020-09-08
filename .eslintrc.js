@@ -17,11 +17,15 @@ module.exports = {
     'comma-dangle': 'off',
     semi: [2, 'always'],
     'space-before-function-paren': 'off',
+    'no-return-assign': 'off',
   },
   globals: {
     $nuxt: true,
   },
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: 'vue-eslint-parser',
+    parserOptions: {
+      parser: 'babel-eslint',
+    },
   },
 };
