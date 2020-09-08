@@ -1,7 +1,6 @@
 <template>
   <section>
     <b-sidebar
-      v-model="open"
       type="is-light"
       :open="open"
       :fullheight="true"
@@ -11,10 +10,7 @@
       @close="handleClose"
     >
       <div class="p-4">
-        <img
-          src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-          alt="Lightweight UI components for Vue.js based on Bulma"
-        />
+        <h2 class="font-bold text-2xl mb-4 pb-2 border-b-2 border-gray-400">Your Cart</h2>
         <b-menu>
           <b-menu-list label="Menu">
             <b-menu-item icon="information-outline" label="Info"></b-menu-item>
