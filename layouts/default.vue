@@ -1,5 +1,6 @@
 <template>
   <div>
+    <cart-sidebar />
     <nav-bar />
     <nuxt />
     <footer-nav />
