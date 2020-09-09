@@ -36,3 +36,17 @@ export type ProductImage = {
 export type ProductImages = {
   edges: ProductImage[];
 };
+
+/**
+ * Product data type used in Vuex store defs
+ */
+export type ProductData = {
+  __typename: string;
+  id: string;
+  title: string;
+  description: string;
+  handle: string;
+  images: ProductImages;
+  priceRange: PriceRange;
+  variants: ProductVariants;
+};

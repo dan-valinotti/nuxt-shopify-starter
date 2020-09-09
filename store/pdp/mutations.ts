@@ -1,5 +1,6 @@
 import { MutationTree } from 'vuex';
-import { PDPState, ProductData } from '~/types/pdp.store';
+import { PDPState } from '~/types/pdp.store';
+import type { ProductData } from '~/types/shopify';
 
 const mutations: MutationTree<PDPState> = {
   setProductData: (state, data: ProductData) => (state.productData = data),

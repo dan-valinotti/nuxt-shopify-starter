@@ -1,4 +1,5 @@
-import { PDPState, ProductData } from '~/types/pdp.store';
+import { PDPState } from '~/types/pdp.store';
+import type { ProductData } from '~/types/shopify';
 
 const state = (): PDPState => ({
   productData: {} as ProductData,
