@@ -1,4 +1,5 @@
 import type { NuxtConfig } from '@nuxt/types';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
 const config: NuxtConfig = {
@@ -40,7 +41,7 @@ const config: NuxtConfig = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/shopify/index.js'],
+  plugins: ['~/plugins/shopify/index.ts'],
   /*
    ** Nuxt.js dev-modules
    */

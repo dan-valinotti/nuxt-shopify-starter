@@ -92,7 +92,7 @@ export const FETCH_CART_ITEMS = gql`
       amount
       currencyCode
     }
-    lineItems(first: 250) {
+    lineItems(first: 25) {
       pageInfo {
         hasNextPage
         hasPreviousPage

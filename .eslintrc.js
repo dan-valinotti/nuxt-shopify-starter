@@ -22,6 +22,7 @@ module.exports = {
     'vue/html-self-closing': 'off',
     'arrow-parens': 'off',
     'vue/singleline-html-element-content-newline': 'off',
+    'dot-notation': 'off',
   },
   globals: {
     $nuxt: true,

@@ -18,6 +18,7 @@ export type ProductVariants = {
 export type VariantPrice = {
   __typename: string;
   amount: string;
+  currencyCode?: string;
 };
 export type PriceRange = {
   minVariantPrice: VariantPrice;
@@ -49,4 +50,27 @@ export type ProductData = {
   images: ProductImages;
   priceRange: PriceRange;
   variants: ProductVariants;
+};
+
+/**
+ * Cart line item, item customAttribute in Vuex store
+ */
+export type CustomAttribute = {
+  key: string;
+  value: string;
+};
+export type CartLineItemVariant = {
+  __typename: string;
+  id: string;
+  title: string;
+  image: ProductImage;
+  priceV2: VariantPrice;
+};
+export type CartLineItem = {
+  __typename: string;
+  id: string;
+  title: string;
+  quantity: number;
+  variant: CartLineItemVariant;
+  customAttributes: CustomAttribute[];
 };
