@@ -1,6 +1,7 @@
+import type { NuxtConfig } from '@nuxt/types';
 require('dotenv').config();
 
-module.exports = {
+const config: NuxtConfig = {
   globalName: 'Nuxt Shopify Starter',
   mode: 'universal',
   telemetry: false,
@@ -114,3 +115,5 @@ module.exports = {
     },
   },
 };
+
+export default config;
