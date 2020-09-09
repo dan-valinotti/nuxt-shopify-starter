@@ -8,12 +8,16 @@ import type {
 } from '~/apollo/types';
 import { CustomAttribute, CartLineItem } from '~/types/shopify';
 
+/**
+ * Extend built-in Context type with items being written to the context
+ */
 declare module '@nuxt/types' {
   interface Context {
     checkoutId: string;
   }
 }
 
+// Additional Types
 type FilteredLineItem = {
   variantId: string;
   quantity: number;
