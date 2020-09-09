@@ -19,6 +19,8 @@ module.exports = {
     semi: [2, 'always'],
     'space-before-function-paren': 'off',
     'no-return-assign': 'off',
+    'vue/html-self-closing': 'off',
+    'arrow-parens': 'off',
   },
   globals: {
     $nuxt: true,
