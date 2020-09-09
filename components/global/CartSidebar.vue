@@ -10,9 +10,7 @@
       @close="handleClose"
     >
       <div class="p-4">
-        <h2 class="font-bold text-2xl mb-4 pb-2 border-b-2 border-gray-400">
-          Your Cart
-        </h2>
+        <h2 class="font-bold text-2xl mb-4 pb-2 border-b-2 border-gray-400">Your Cart</h2>
         <b-menu>
           <b-menu-list label="Menu">
             <b-menu-item icon="information-outline" label="Info" />
@@ -27,15 +25,9 @@
                   Devices
                   <b-dropdown aria-role="list" class="is-pulled-right" position="is-bottom-left">
                     <b-icon slot="trigger" icon="dots-vertical" />
-                    <b-dropdown-item aria-role="listitem">
-                      Action
-                    </b-dropdown-item>
-                    <b-dropdown-item aria-role="listitem">
-                      Another action
-                    </b-dropdown-item>
-                    <b-dropdown-item aria-role="listitem">
-                      Something else
-                    </b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem">Action</b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>
                   </b-dropdown>
                 </template>
               </b-menu-item>
@@ -67,13 +59,14 @@ export default {
   },
   computed: {
     ...mapState({
-      open: state => state.cart.sidebarOpen,
+      open: (state) => state.cart.sidebarOpen,
     }),
   },
   methods: {
     ...mapMutations({
       setOpen: 'cart/setSidebarOpen',
     }),
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     handleClose() {
       this.setOpen(false);
     },

@@ -21,6 +21,7 @@ module.exports = {
     'no-return-assign': 'off',
     'vue/html-self-closing': 'off',
     'arrow-parens': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
   },
   globals: {
     $nuxt: true,

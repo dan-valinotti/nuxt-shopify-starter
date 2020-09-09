@@ -17,8 +17,14 @@
             <strong>Sign up</strong>
           </button>
           <button class="button is-light">Log in</button>
-          <nav-bar-icon-button icon-name="shopping-cart" @click="onClickCartButton" />
-          <nav-bar-icon-button icon-name="user-circle" @click="onClickCartButton" />
+          <nav-bar-icon-button
+            icon-name="shopping-cart"
+            @click="onClickCartButton"
+          />
+          <nav-bar-icon-button
+            icon-name="user-circle"
+            @click="onClickCartButton"
+          />
         </div>
       </b-navbar-item>
     </template>
