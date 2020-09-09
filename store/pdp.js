@@ -4,7 +4,7 @@ export const state = () => ({
 });
 
 export const getters = {
-  getProductData: (state) => state.productData,
+  getProductData: state => state.productData,
 };
 
 export const mutations = {

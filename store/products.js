@@ -4,4 +4,4 @@ export const state = () => ({
 
 export const mutations = {
   setAllProducts: (state, products) => state.allProducts = products,
-}
+};

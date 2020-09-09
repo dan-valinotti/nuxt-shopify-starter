@@ -1,5 +1,5 @@
-import { UPDATE_CART_ITEMS, FETCH_CART_ITEMS } from '~/apollo';
 import { setLoading, handleAlert, setLineItems } from './utils';
+import { UPDATE_CART_ITEMS, FETCH_CART_ITEMS } from '~/apollo';
 
 // Plugin function: add selected item to cart
 export const addToCart = (context) => {
@@ -15,16 +15,16 @@ export const addToCart = (context) => {
       .query({
         query: FETCH_CART_ITEMS,
         variables: {
-          checkoutId: checkoutId,
+          checkoutId,
         },
       })
       .then(({ data }) => {
         // Transform existing line items from Shopify into proper
         // input for update line items mutation, push current item to array
-        const lineItems = data.node.lineItems.edges.map((item) => ({
+        const lineItems = data.node.lineItems.edges.map(item => ({
           variantId: item.node.variant.id,
           quantity: item.node.quantity,
-          customAttributes: item.node.customAttributes.map((attr) => ({
+          customAttributes: item.node.customAttributes.map(attr => ({
             key: attr.key,
             value: attr.value,
           })),
@@ -34,7 +34,7 @@ export const addToCart = (context) => {
         const productVariantId = productData.variants.edges[0].node.id;
 
         const existingIndex = lineItems.findIndex(
-          (item) => item.variantId === productVariantId
+          item => item.variantId === productVariantId
         );
 
         if (existingIndex === -1) {
@@ -52,13 +52,13 @@ export const addToCart = (context) => {
           .mutate({
             mutation: UPDATE_CART_ITEMS,
             variables: {
-              checkoutId: checkoutId,
+              checkoutId,
               lineItems,
             },
           })
           .then(({ data }) => {
             const checkoutData = data.checkoutLineItemsReplace.checkout;
-            const newLineItems = checkoutData.lineItems.edges.map((item) => ({
+            const newLineItems = checkoutData.lineItems.edges.map(item => ({
               ...item.node,
             }));
             const totalPrice = checkoutData.totalPriceV2.amount;

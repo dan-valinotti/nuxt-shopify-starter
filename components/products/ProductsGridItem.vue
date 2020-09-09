@@ -3,13 +3,15 @@
     <div class="card">
       <div class="card-image">
         <figure class="image">
-          <img :src="thumbnail.originalSrc" :alt="thumbnail.altText" />
+          <img :src="thumbnail.originalSrc" :alt="thumbnail.altText">
         </figure>
       </div>
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            <p class="title is-4">{{ title }}</p>
+            <p class="title is-4">
+              {{ title }}
+            </p>
           </div>
         </div>
 

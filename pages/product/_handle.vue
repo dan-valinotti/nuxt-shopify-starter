@@ -39,8 +39,8 @@ export default {
   },
   computed: {
     ...mapState({
-      productData: (state) => state.pdp.productData,
-      isLoading: (state) => state.pdp.loadingState,
+      productData: state => state.pdp.productData,
+      isLoading: state => state.pdp.loadingState,
     }),
   },
   methods: {
