@@ -1,10 +1,19 @@
+import type { NuxtConfig } from '@nuxt/types';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
-module.exports = {
+const config: NuxtConfig = {
   globalName: 'Nuxt Shopify Starter',
   mode: 'universal',
   telemetry: false,
   components: ['~/components/global'],
+  typescript: {
+    typeCheck: {
+      eslint: {
+        files: './**/*.{ts,js,vue}',
+      },
+    },
+  },
   /*
    ** Headers of the page
    */
@@ -32,7 +41,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/shopify/index.js'],
+  plugins: ['~/plugins/shopify/index.ts'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -43,6 +52,8 @@ module.exports = {
     '@nuxtjs/eslint-module',
     // Docs: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
+    // Docs: https://typescript.nuxtjs.org/guide/
+    '@nuxt/typescript-build',
   ],
   /*
    ** Nuxt.js modules
@@ -58,7 +69,7 @@ module.exports = {
   fontawesome: {
     component: 'fa',
     imports: [
-      //import whole set
+      // import whole set
       {
         set: '@fortawesome/free-solid-svg-icons',
         icons: ['fas'],
@@ -95,13 +106,15 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {},
+    // extend(config, ctx) {},
   },
   render: {
     bundleRenderer: {
-      shouldPreload: (file, type) => {
+      shouldPreload: (type) => {
         return ['script', 'style', 'font'].includes(type);
       },
     },
   },
 };
+
+export default config;

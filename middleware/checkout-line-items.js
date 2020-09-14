@@ -28,7 +28,7 @@ export default async (context) => {
 
       if (data) {
         const totalPrice = data.node.totalPriceV2.amount;
-        const lineItems = data.node.lineItems.edges.map((item) => ({
+        const lineItems = data.node.lineItems.edges.map(item => ({
           ...item.node,
         }));
         const totalQuantity = data.node.lineItems.edges.reduce(

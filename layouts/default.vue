@@ -1,5 +1,8 @@
 <template>
   <div>
+    <client-only>
+      <cart-sidebar />
+    </client-only>
     <nav-bar />
     <nuxt />
     <footer-nav />

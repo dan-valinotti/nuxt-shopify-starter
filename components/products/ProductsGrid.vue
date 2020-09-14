@@ -1,7 +1,10 @@
 <template>
   <div class="products-grid">
     <div class="w-full flex flex-col justify-center items-center">
-      <div v-if="products.length > 0" class="grid grid-flow-row grid-cols-5 grid-rows-5 gap-4 w-full h-full">
+      <div
+        v-if="products.length > 0"
+        class="grid grid-flow-row grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full h-full"
+      >
         <div v-for="(product, index) in products" :key="index" class="product">
           <products-grid-item
             :thumbnail="product.images.edges[0].node"
@@ -23,15 +26,15 @@ import ProductsGridItem from './ProductsGridItem';
 
 export default {
   components: {
-    ProductsGridItem
+    ProductsGridItem,
   },
   props: {
     products: {
       type: Array,
       default: () => [],
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss">

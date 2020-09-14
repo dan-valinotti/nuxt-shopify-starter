@@ -1,14 +1,25 @@
+import type { Middleware, Context } from '@nuxt/types';
 import { CREATE_CART } from '~/apollo';
+
+/**
+ * Extend built-in Context type with items being written to the context
+ */
+declare module '@nuxt/types' {
+  interface Context {
+    checkoutId: string;
+    checkoutExpiration: Date | string;
+  }
+}
 
 /**
  * Middleware function that checks browser cookies for a hum checkout ID,
  * if none is found, creates a new Checkout instance in Shopify's API and
  * sets cookies for the returned checkoutId and expiration date (30 days)
  *
- * @param {*} context
+ * @param {Context} context
  *  Nuxt.js App Context
  */
-export default async (context) => {
+const middleware: Middleware = async (context: Context) => {
   const { app, error } = context;
   // Define apollo client
   const {
@@ -49,19 +60,21 @@ export default async (context) => {
         context.checkoutId = newCheckoutId;
         context.checkoutExpiration = expiresAt;
       } else {
-        context.checkoutId = undefined;
-        context.checkoutExpiration = undefined;
+        context.checkoutId = '';
+        context.checkoutExpiration = '';
       }
     } else {
       context.checkoutId = checkoutId;
       context.checkoutExpiration = expiration;
     }
   } catch (err) {
-    context.checkoutId = undefined;
-    context.checkoutExpiration = undefined;
+    context.checkoutId = '';
+    context.checkoutExpiration = '';
     error({
       statusCode: 500,
       message: err.message,
     });
   }
 };
+
+export default middleware;

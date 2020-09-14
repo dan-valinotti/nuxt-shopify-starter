@@ -6,7 +6,7 @@
       </p>
       <nuxt-link to="/">
         Home
-      </nuxt-link> / 
+      </nuxt-link> /
       <nuxt-link to="/products">
         Products
       </nuxt-link>

@@ -6,8 +6,8 @@
       </b-navbar-item>
     </template>
     <template slot="start">
-      <nuxt-link to="/" class="navbar-item"> Home </nuxt-link>
-      <nuxt-link to="/products" class="navbar-item"> Products </nuxt-link>
+      <nuxt-link to="/" class="navbar-item">Home</nuxt-link>
+      <nuxt-link to="/products" class="navbar-item">Products</nuxt-link>
     </template>
 
     <template slot="end">
@@ -27,9 +27,6 @@
           />
         </div>
       </b-navbar-item>
-    </template>
-    <template slot="sidebar">
-      <cart-sidebar />
     </template>
   </b-navbar>
 </template>

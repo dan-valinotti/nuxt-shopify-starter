@@ -1,8 +1,10 @@
 <template>
   <div class="container">
-    <div class="w-full h-full flex flex-col justify-start items-start pt-16">
+    <div class="w-full h-full flex flex-col justify-start items-start pt-16 px-4">
       <div class="w-full my-8 flex justify-start">
-        <h1 class="text-4xl font-bold">Products</h1>
+        <h1 class="text-4xl font-bold">
+          Products
+        </h1>
       </div>
       <div class="w-full flex justify-start items-start">
         <products-grid :products="allProducts" />
@@ -18,14 +20,15 @@ import ProductsGrid from '~/components/products/ProductsGrid';
 export default {
   middleware: ['products-get'],
   components: {
-    ProductsGrid
+    ProductsGrid,
   },
   computed: {
     ...mapState({
-      allProducts: (state) => state.products.allProducts.map((node) => ({ ...node })),
-    })
-  }
-}
+      allProducts: state =>
+        state.products.allProducts.map(node => ({ ...node })),
+    }),
+  },
+};
 </script>
 
 <style lang="scss" scoped>

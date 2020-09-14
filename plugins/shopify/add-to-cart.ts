@@ -1,11 +1,38 @@
+import type { Plugin } from '@nuxt/types';
+import { setLoading, setLineItems } from './utils';
 import { UPDATE_CART_ITEMS, FETCH_CART_ITEMS } from '~/apollo';
-import { setLoading, handleAlert, setLineItems } from './utils';
+import type {
+  FetchCartData,
+  FetchCartLineItem,
+  UpdateCartData,
+} from '~/apollo/types';
+import { CustomAttribute, CartLineItem } from '~/types/shopify';
+
+/**
+ * Extend built-in Context type with items being written to the context
+ */
+declare module '@nuxt/types' {
+  interface Context {
+    checkoutId: string;
+  }
+}
+
+// Additional Types
+type FilteredLineItem = {
+  variantId: string;
+  quantity: number;
+  customAttributes: CustomAttribute[];
+};
+type FilteredCustomAttribute = {
+  key: string;
+  value: string;
+};
 
 // Plugin function: add selected item to cart
-export const addToCart = (context) => {
+export const addToCart: Plugin = (context) => {
   const { app, store } = context;
   const apolloClient = context.app.apolloProvider.clients.defaultClient;
-  const checkoutId =
+  const checkoutId: string =
     context.checkoutId ||
     app.$cookies.get(process.env.SHOPIFY_CHECKOUT_ID_COOKIE);
 
@@ -15,26 +42,30 @@ export const addToCart = (context) => {
       .query({
         query: FETCH_CART_ITEMS,
         variables: {
-          checkoutId: checkoutId,
+          checkoutId,
         },
       })
-      .then(({ data }) => {
+      .then(({ data }: FetchCartData) => {
         // Transform existing line items from Shopify into proper
         // input for update line items mutation, push current item to array
-        const lineItems = data.node.lineItems.edges.map((item) => ({
-          variantId: item.node.variant.id,
-          quantity: item.node.quantity,
-          customAttributes: item.node.customAttributes.map((attr) => ({
-            key: attr.key,
-            value: attr.value,
-          })),
-        }));
+        const lineItems = data.node.lineItems.edges.map(
+          (item: FetchCartLineItem) => ({
+            variantId: item.node.variant.id,
+            quantity: item.node.quantity,
+            customAttributes: item.node.customAttributes.map(
+              (attr: FilteredCustomAttribute) => ({
+                key: attr.key,
+                value: attr.value,
+              })
+            ),
+          })
+        );
         // Get selected product's variant ID
         const productData = store.getters['pdp/getProductData'];
         const productVariantId = productData.variants.edges[0].node.id;
 
         const existingIndex = lineItems.findIndex(
-          (item) => item.variantId === productVariantId
+          (item: FilteredLineItem) => item.variantId === productVariantId
         );
 
         if (existingIndex === -1) {
@@ -52,18 +83,20 @@ export const addToCart = (context) => {
           .mutate({
             mutation: UPDATE_CART_ITEMS,
             variables: {
-              checkoutId: checkoutId,
+              checkoutId,
               lineItems,
             },
           })
-          .then(({ data }) => {
+          .then(({ data }: UpdateCartData) => {
             const checkoutData = data.checkoutLineItemsReplace.checkout;
-            const newLineItems = checkoutData.lineItems.edges.map((item) => ({
-              ...item.node,
-            }));
+            const newLineItems: CartLineItem[] = checkoutData.lineItems.edges.map(
+              (item: FetchCartLineItem): CartLineItem => ({
+                ...item.node,
+              })
+            );
             const totalPrice = checkoutData.totalPriceV2.amount;
             const totalQuantity = checkoutData.lineItems.edges.reduce(
-              (acc, cur) => acc + cur.quantity,
+              (acc: number, cur: FetchCartLineItem) => acc + cur.node.quantity,
               0
             );
             setLineItems(context, newLineItems, totalPrice, totalQuantity);
@@ -83,7 +116,7 @@ export const addToCart = (context) => {
             return true;
             // Catch error in update cart items mutation
           })
-          .catch((err) => {
+          .catch((err: Error) => {
             setLoading(context, false);
             console.log(err);
             // handleAlert(
@@ -96,7 +129,7 @@ export const addToCart = (context) => {
           });
         // Catch error in fetch cart items request
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.log(err);
         setLoading(context, false);
         // handleAlert(context, 'Something went wrong...', err.message, 'error');

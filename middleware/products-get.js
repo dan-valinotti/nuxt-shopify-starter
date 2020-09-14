@@ -15,7 +15,7 @@ export default async function(context) {
     });
 
     if (data) {
-      const allProducts = data.products.edges.map((item) => ({ ...item.node }));
+      const allProducts = data.products.edges.map(item => ({ ...item.node }));
       store.commit('products/setAllProducts', allProducts);
       context.allProducts = allProducts;
     }
@@ -23,6 +23,6 @@ export default async function(context) {
     error({
       statusCode: 500,
       message: err.message
-    })
+    });
   }
 }

@@ -26,6 +26,6 @@ export default async function(context) {
     error({
       statusCode: 500,
       message: err.message
-    })
+    });
   }
 }
